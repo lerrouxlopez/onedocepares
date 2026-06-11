@@ -1,0 +1,53 @@
+$primary: #9f1d20;
+$secondary: #1f2933;
+$success: #2c7a4b;
+$warning: #cc7a00;
+$light: #f5efe2;
+$dark: #151515;
+$body-bg: #f8f4eb;
+$body-color: #1f2933;
+$font-family-sans-serif: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+@import "bootstrap/scss/bootstrap";
+
+:root {
+  --odp-accent: #f0b429;
+  --odp-ink: #1f2933;
+  --odp-panel: rgba(255, 255, 255, 0.88);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(240, 180, 41, 0.16), transparent 38%),
+    linear-gradient(180deg, #fcfaf6 0%, #f5efe2 100%);
+}
+
+.shell-hero {
+  padding: 5rem 0 3rem;
+}
+
+.shell-card {
+  background: var(--odp-panel);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(31, 41, 51, 0.08);
+  box-shadow: 0 1rem 2rem rgba(31, 41, 51, 0.08);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(44, 122, 75, 0.12);
+  color: #245c39;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: currentColor;
+}
