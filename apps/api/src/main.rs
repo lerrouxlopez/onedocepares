@@ -1,7 +1,13 @@
 mod app;
+mod config;
+mod db;
+mod error;
+mod middleware;
+mod repositories;
 mod routes;
-
-use std::{env, net::SocketAddr};
+mod services;
+mod state;
+mod utils;
 
 use tokio::net::TcpListener;
 use tower_http::trace::TraceLayer;
@@ -10,22 +16,26 @@ use tracing_subscriber::{EnvFilter, layer::SubscriberExt, util::SubscriberInitEx
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    dotenvy::dotenv().ok();
+    let config = config::Config::from_env()?;
+
     tracing_subscriber::registry()
         .with(
-            EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| EnvFilter::new("info,tower_http=info")),
+            EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(&config.rust_log)),
         )
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    let app = app::build_router().layer(TraceLayer::new_for_http());
-    let port = env::var("API_PORT").unwrap_or_else(|_| "8000".to_string());
-    let address: SocketAddr = format!("0.0.0.0:{port}").parse()?;
-    let listener = TcpListener::bind(address).await?;
+    let app = app::build_router(config.clone())?.layer(TraceLayer::new_for_http());
+    let listener = TcpListener::bind(config.bind_addr).await?;
 
     info!("listening on {}", listener.local_addr()?);
 
-    axum::serve(listener, app).await?;
+    axum::serve(
+        listener,
+        app.into_make_service_with_connect_info::<std::net::SocketAddr>(),
+    )
+    .await?;
 
     Ok(())
 }

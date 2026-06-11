@@ -44,6 +44,7 @@ Phase 0 foundation is scaffolded:
 
 - Web app boots with a public landing shell and admin placeholder
 - API serves `GET /api/v1/health`
+- Backend auth foundation now includes login/logout, session lookup, CSRF token fetch, and admin CMS page routes
 - Docker Compose defines `postgres`, `api`, and `web`
 - CI runs frontend build plus Rust formatting, clippy, and tests
 - Environment templates exist for both apps
@@ -111,6 +112,9 @@ Current variables:
 - `API_PORT`
 - `DATABASE_URL`
 - `RUST_LOG`
+- `SESSION_COOKIE_NAME`
+- `SECURE_COOKIES`
+- `SESSION_TTL_HOURS`
 
 ## Validation
 

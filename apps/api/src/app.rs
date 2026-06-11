@@ -1,20 +1,12 @@
 use axum::Router;
 
-use crate::routes;
+use crate::{config::Config, db, error::AppError, routes, state::AppState};
 
-#[derive(Clone)]
-pub struct AppState {
-    pub service_name: &'static str,
-    pub service_version: &'static str,
-}
+pub fn build_router(config: Config) -> Result<Router, AppError> {
+    let db = db::create_pool(&config)?;
+    let state = AppState::new(config, db);
 
-pub fn build_router() -> Router {
-    let state = AppState {
-        service_name: "onedocepares-api",
-        service_version: env!("CARGO_PKG_VERSION"),
-    };
-
-    Router::new()
-        .nest("/api/v1", routes::api())
-        .with_state(state)
+    Ok(Router::new()
+        .nest("/api/v1", routes::api(state.clone()))
+        .with_state(state))
 }
