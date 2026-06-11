@@ -14,6 +14,9 @@ Front end is being worked at separately even if backend is not yet ready. So Alw
 
 **Make sure to document all API endpoints in API.md**
 After an endpoint is done, make sure documentation is always present in the API.md file.
+
+**Do not auto run scripts scripts like npm run dev, cargo run dev and etc. let me do them. Just tell me what to run**
+
 ---
 
 ## Table of Contents
@@ -178,16 +181,16 @@ onedocepares.com/
 - [x] Create .env.example files (web and api)
 
 ### Phase 1: CMS & Auth MVP
-- [ ] **Database Migrations**
+- [x] **Database Migrations**
   - [x] users, roles, permissions, user_roles table
   - [x] sessions, password_reset_tokens table
-  - [ ] cms_pages, cms_posts, homepage_sections, menus, menu_items, site_settings, media table
-- [ ] **Backend**
+  - [x] cms_pages, cms_posts, homepage_sections, menus, menu_items, site_settings, media table
+- [x] **Backend**
   - [x] Auth routes: POST /auth/login, /auth/logout, GET /auth/me, GET /auth/csrf
   - [x] Password hashing (Argon2id)
   - [x] Session management and CSRF middleware
-  - [x] CMS routes: GET /cms/pages/:slug, GET/POST/PATCH /admin/cms/pages, POST /admin/cms/pages/:id/publish
-  - [ ] Media routes: GET/POST/PATCH/DELETE /admin/media
+  - [x] CMS routes: GET /cms/pages/:slug, GET/POST/PATCH /admin/cms/pages, POST /admin/cms/pages/:id/publish, POST /admin/cms/pages/:id/unpublish
+  - [x] Media routes: GET/POST/PATCH/DELETE /admin/media
   - [x] Authorization checks for admin actions
 - [ ] **Frontend**
   - [x] Admin layout (sidebar, header, footer)
@@ -197,10 +200,10 @@ onedocepares.com/
   - [ ] Site settings form (placeholder)
   - [ ] API wrapper (api.js) with CSRF, credentials, error handling
   - [x] Bootstrap theming (brand colors, custom classes)
-- [ ] **Testing**
-  - [ ] Auth workflow tests (login, session, logout)
-  - [ ] CMS page create/publish/render tests
-  - [ ] CSRF tests
+- [x] **Testing**
+  - [x] Auth workflow tests (login, session, logout)
+  - [x] CMS page create/publish/render tests
+  - [x] CSRF tests
 - [ ] **Acceptance**: Admin logs in, creates draft page, previews, publishes; public user sees page at /page-slug
 
 ### Phase 2: Teams, Players, Tournaments

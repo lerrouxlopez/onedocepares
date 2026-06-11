@@ -10,6 +10,7 @@ use crate::{
 pub mod auth;
 pub mod cms;
 pub mod health;
+pub mod media;
 
 pub fn api(state: AppState) -> Router<AppState> {
     let session_router = auth::session_router().route_layer(middleware::from_fn_with_state(
@@ -27,7 +28,8 @@ pub fn api(state: AppState) -> Router<AppState> {
             auth_middleware::require_authenticated,
         ));
 
-    let admin_cms_router = cms::admin_router()
+    let admin_router = cms::admin_router()
+        .merge(media::admin_router())
         .route_layer(middleware::from_fn_with_state(
             state.clone(),
             csrf::require_csrf,
@@ -43,5 +45,5 @@ pub fn api(state: AppState) -> Router<AppState> {
         .merge(session_router)
         .merge(mutating_auth_router)
         .merge(cms::public_router())
-        .nest("/admin", admin_cms_router)
+        .nest("/admin", admin_router)
 }

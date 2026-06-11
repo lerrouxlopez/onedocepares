@@ -32,7 +32,9 @@ npm run build    # Production build to dist/
 cargo run                                               # Start API on port 8000
 cargo fmt --check                                       # Format check
 cargo clippy --all-targets -- -D warnings               # Lint
-cargo test                                              # Run tests
+cargo test                                              # Run all tests
+cargo test <name>                                       # Run tests matching a name substring
+cargo test utils::slug                                  # Example: run a specific module's tests
 sqlx migrate run                                        # Apply pending migrations
 sqlx migrate add <name>                                 # Create a new migration file
 ```
@@ -111,6 +113,8 @@ Migrations are plain SQL files in `apps/api/migrations/` and run in order via `s
 - `0002_cms.sql` — cms_pages
 
 New migrations must be additive; never modify existing migration files.
+
+Repositories use `sqlx::query_as` (runtime queries, not `query!` macros), so `cargo build` does not require a running database or `SQLX_OFFLINE` mode.
 
 ## Important Conventions
 

@@ -118,6 +118,27 @@ pub async fn update_page(
     .await
 }
 
+pub async fn unpublish_page(
+    pool: &PgPool,
+    page_id: Uuid,
+    actor_id: Uuid,
+) -> Result<Option<CmsPageRecord>, sqlx::Error> {
+    sqlx::query_as::<_, CmsPageRecord>(
+        r#"
+        UPDATE cms_pages
+        SET status = 'draft',
+            updated_by = $2,
+            updated_at = now()
+        WHERE id = $1
+        RETURNING id, title, slug, body, excerpt, seo_title, seo_description, status, published_at, created_at, updated_at
+        "#,
+    )
+    .bind(page_id)
+    .bind(actor_id)
+    .fetch_optional(pool)
+    .await
+}
+
 pub async fn publish_page(
     pool: &PgPool,
     page_id: Uuid,

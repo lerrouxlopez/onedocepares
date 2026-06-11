@@ -1,14 +1,4 @@
-mod app;
-mod config;
-mod db;
-mod error;
-mod middleware;
-mod repositories;
-mod routes;
-mod services;
-mod state;
-mod utils;
-
+use api::{app, config};
 use tokio::net::TcpListener;
 use tower_http::trace::TraceLayer;
 use tracing::info;

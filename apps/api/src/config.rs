@@ -10,6 +10,7 @@ pub struct Config {
     pub session_cookie_name: String,
     pub secure_cookies: bool,
     pub session_ttl_hours: i64,
+    pub uploads_dir: String,
 }
 
 impl Config {
@@ -33,6 +34,7 @@ impl Config {
                 .ok()
                 .and_then(|value| value.parse::<i64>().ok())
                 .unwrap_or(24),
+            uploads_dir: env::var("UPLOADS_DIR").unwrap_or_else(|_| "./uploads".to_string()),
         })
     }
 }
