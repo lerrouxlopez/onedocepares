@@ -42,7 +42,7 @@ Custom CMS and tournament management platform for One Doce Pares. This repositor
 
 Phase 0 foundation is scaffolded:
 
-- Web app boots with a public landing shell and admin placeholder
+- Web app boots with a public landing shell and a Phase 1 admin frontend
 - API serves `GET /api/v1/health`
 - Backend auth foundation now includes login/logout, session lookup, CSRF token fetch, and admin CMS page routes
 - Docker Compose defines `postgres`, `api`, and `web`
@@ -85,6 +85,8 @@ Phase 0 foundation is scaffolded:
    - Public site: `http://localhost:5173`
    - Admin shell: `http://localhost:5173/admin/`
    - API health: `http://localhost:8000/api/v1/health`
+
+The admin frontend also supports a local preview mode when the API is unavailable, so the login, CMS pages, media library, and settings placeholder can still be tested in the browser.
 
 ### Option 2: Run with Docker Compose
 

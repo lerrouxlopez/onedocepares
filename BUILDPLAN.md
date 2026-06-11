@@ -194,11 +194,11 @@ onedocepares.com/
   - [x] Authorization checks for admin actions
 - [ ] **Frontend**
   - [x] Admin layout (sidebar, header, footer)
-  - [ ] Login page
-  - [ ] CMS pages list and edit form
-  - [ ] Media library list and upload
-  - [ ] Site settings form (placeholder)
-  - [ ] API wrapper (api.js) with CSRF, credentials, error handling
+  - [x] Login page
+  - [x] CMS pages list and edit form
+  - [x] Media library list and upload
+  - [x] Site settings form (placeholder)
+  - [x] API wrapper (api.js) with CSRF, credentials, error handling
   - [x] Bootstrap theming (brand colors, custom classes)
 - [x] **Testing**
   - [x] Auth workflow tests (login, session, logout)
