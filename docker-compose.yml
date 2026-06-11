@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: onedocepares
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  api:
+    image: rust:1.94
+    working_dir: /workspace/apps/api
+    command: sh -c "cargo run"
+    environment:
+      API_PORT: 8000
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/onedocepares
+      RUST_LOG: info,tower_http=info
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/workspace
+      - cargo-cache:/usr/local/cargo/registry
+      - cargo-target:/workspace/apps/api/target
+    depends_on:
+      - postgres
+
+  web:
+    image: node:24-alpine
+    working_dir: /workspace/apps/web
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    environment:
+      VITE_API_BASE_URL: /api/v1
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/workspace
+      - web-node-modules:/workspace/apps/web/node_modules
+    depends_on:
+      - api
+
+volumes:
+  postgres-data:
+  cargo-cache:
+  cargo-target:
+  web-node-modules:
