@@ -3,6 +3,9 @@
 ## Start Here
 
 - Read `BUILDPLAN.md` before making implementation decisions.
+
+**Always read `BUILDPLAN.md` at the start of every session before writing any code.** Check `5. [Task List](#task-list)` for the first unchecked task, then read that phase's detail section. Never start a new phase until all tasks in the current phase are checked off and exit criteria are confirmed with the user.
+
 - Use `README.md` for current scaffold status, local setup, and validation commands.
 - Treat `BUILDPLAN.md` as the source of truth for roadmap, architecture, and phased delivery.
 
@@ -21,6 +24,7 @@
 ## Working Style
 
 - Make focused, minimal changes that fit the current phase of the build plan.
+- When completing planned work, update the matching checklist items in `BUILDPLAN.md` before finishing the session.
 - Update documentation when structure, setup, or developer workflow changes.
 - Validate changes with the smallest relevant build or test command before finishing.
 
