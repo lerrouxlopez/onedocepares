@@ -154,22 +154,22 @@ onedocepares.com/
 ## Task List
 
 ### Phase 0: Foundation
-- [ ] Create monorepo directory structure
-- [ ] Initialize Vite project in apps/web
-  - [ ] Bootstrap 5 npm install
-  - [ ] jQuery npm install
-  - [ ] SCSS setup with Bootstrap variables override
-  - [ ] package.json with dev/build scripts
-- [ ] Initialize Rust Axum project in apps/api
-  - [ ] Cargo.toml with dependencies (axum, tokio, sqlx, serde, etc.)
-  - [ ] Basic main.rs with router
-- [ ] Create docker-compose.yml with postgres, api, web services
-- [ ] Create GitHub Actions CI workflow
-  - [ ] Frontend: npm ci, npm run build
-  - [ ] Backend: cargo fmt --check, cargo clippy, cargo test
-- [ ] Implement /api/v1/health endpoint
-- [ ] Set up structured logging (tracing)
-- [ ] Create .env.example files (web and api)
+- [x] Create monorepo directory structure
+- [x] Initialize Vite project in apps/web
+  - [x] Bootstrap 5 npm install
+  - [x] jQuery npm install
+  - [x] SCSS setup with Bootstrap variables override
+  - [x] package.json with dev/build scripts
+- [x] Initialize Rust Axum project in apps/api
+  - [x] Cargo.toml with dependencies (axum, tokio, sqlx, serde, etc.)
+  - [x] Basic main.rs with router
+- [x] Create docker-compose.yml with postgres, api, web services
+- [x] Create GitHub Actions CI workflow
+  - [x] Frontend: npm ci, npm run build
+  - [x] Backend: cargo fmt --check, cargo clippy, cargo test
+- [x] Implement /api/v1/health endpoint
+- [x] Set up structured logging (tracing)
+- [x] Create .env.example files (web and api)
 
 ### Phase 1: CMS & Auth MVP
 - [ ] **Database Migrations**
@@ -184,13 +184,13 @@ onedocepares.com/
   - [ ] Media routes: GET/POST/PATCH/DELETE /admin/media
   - [ ] Authorization checks for admin actions
 - [ ] **Frontend**
-  - [ ] Admin layout (sidebar, header, footer)
+  - [x] Admin layout (sidebar, header, footer)
   - [ ] Login page
   - [ ] CMS pages list and edit form
   - [ ] Media library list and upload
   - [ ] Site settings form (placeholder)
   - [ ] API wrapper (api.js) with CSRF, credentials, error handling
-  - [ ] Bootstrap theming (brand colors, custom classes)
+  - [x] Bootstrap theming (brand colors, custom classes)
 - [ ] **Testing**
   - [ ] Auth workflow tests (login, session, logout)
   - [ ] CMS page create/publish/render tests
