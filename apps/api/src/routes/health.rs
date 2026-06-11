@@ -1,7 +1,7 @@
 use axum::{Json, Router, extract::State, routing::get};
 use serde::Serialize;
 
-use crate::app::AppState;
+use crate::state::AppState;
 
 #[derive(Serialize)]
 struct HealthResponse<'a> {

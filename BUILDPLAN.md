@@ -8,6 +8,12 @@ IMPORTANT Note:
 ## Session Start
 
 **Always read `BUILDPLAN.md` at the start of every session before writing any code.** Check 5. [Task List](#task-list) for the first unchecked task, then read that phase's detail section. Never start a new phase until all tasks in the current phase are checked off and exit criteria are confirmed with the user.
+
+**Make sure Frontend is runnable and testable even if API is not present**
+Front end is being worked at separately even if backend is not yet ready. So Always make sure the developer can test and access the frontend.
+
+**Make sure to document all API endpoints in API.md**
+After an endpoint is done, make sure documentation is always present in the API.md file.
 ---
 
 ## Table of Contents
@@ -173,16 +179,16 @@ onedocepares.com/
 
 ### Phase 1: CMS & Auth MVP
 - [ ] **Database Migrations**
-  - [ ] users, roles, permissions, user_roles table
-  - [ ] sessions, password_reset_tokens table
+  - [x] users, roles, permissions, user_roles table
+  - [x] sessions, password_reset_tokens table
   - [ ] cms_pages, cms_posts, homepage_sections, menus, menu_items, site_settings, media table
 - [ ] **Backend**
-  - [ ] Auth routes: POST /auth/login, /auth/logout, GET /auth/me, GET /auth/csrf
-  - [ ] Password hashing (Argon2id)
-  - [ ] Session management and CSRF middleware
-  - [ ] CMS routes: GET /cms/pages/:slug, GET/POST/PATCH /admin/cms/pages, POST /admin/cms/pages/:id/publish
+  - [x] Auth routes: POST /auth/login, /auth/logout, GET /auth/me, GET /auth/csrf
+  - [x] Password hashing (Argon2id)
+  - [x] Session management and CSRF middleware
+  - [x] CMS routes: GET /cms/pages/:slug, GET/POST/PATCH /admin/cms/pages, POST /admin/cms/pages/:id/publish
   - [ ] Media routes: GET/POST/PATCH/DELETE /admin/media
-  - [ ] Authorization checks for admin actions
+  - [x] Authorization checks for admin actions
 - [ ] **Frontend**
   - [x] Admin layout (sidebar, header, footer)
   - [ ] Login page
