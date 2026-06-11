@@ -136,6 +136,10 @@ export async function getHealth() {
   return apiRequest('/health')
 }
 
+export async function getPublicPage(slug) {
+  return apiRequest(`/cms/pages/${encodeURIComponent(slug)}`)
+}
+
 export async function login(credentials) {
   const response = await apiRequest('/auth/login', {
     method: 'POST',
