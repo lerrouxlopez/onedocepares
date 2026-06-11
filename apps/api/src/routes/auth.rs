@@ -1,7 +1,7 @@
 use axum::{
     Extension, Json, Router,
-    extract::{ConnectInfo, State},
-    http::StatusCode,
+    extract::{ConnectInfo, FromRequestParts, State},
+    http::{StatusCode, request::Parts},
     response::IntoResponse,
     routing::{get, post},
 };
@@ -41,6 +41,24 @@ struct CsrfResponse {
     csrf_token: String,
 }
 
+/// Optional client IP — succeeds (with None) when ConnectInfo is absent (e.g. in tests).
+struct MaybeClientIp(Option<String>);
+
+impl<S> FromRequestParts<S> for MaybeClientIp
+where
+    S: Send + Sync,
+{
+    type Rejection = std::convert::Infallible;
+
+    async fn from_request_parts(parts: &mut Parts, _state: &S) -> Result<Self, Self::Rejection> {
+        let ip = parts
+            .extensions
+            .get::<ConnectInfo<SocketAddr>>()
+            .map(|ConnectInfo(addr)| addr.ip().to_string());
+        Ok(Self(ip))
+    }
+}
+
 pub fn public_router() -> Router<AppState> {
     Router::new().route("/auth/login", post(login))
 }
@@ -57,7 +75,7 @@ pub fn mutating_router() -> Router<AppState> {
 
 async fn login(
     State(state): State<AppState>,
-    ConnectInfo(address): ConnectInfo<SocketAddr>,
+    MaybeClientIp(maybe_ip): MaybeClientIp,
     jar: CookieJar,
     headers: axum::http::HeaderMap,
     Json(payload): Json<LoginRequest>,
@@ -93,7 +111,7 @@ async fn login(
             csrf_token: &csrf_token,
             expires_at: expiry,
             user_agent,
-            ip_address: Some(&address.ip().to_string()),
+            ip_address: maybe_ip.as_deref(),
         },
     )
     .await?;

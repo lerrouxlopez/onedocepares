@@ -14,6 +14,7 @@ use crate::{
     state::AppState,
 };
 
+
 #[derive(Serialize)]
 struct ApiEnvelope<T> {
     data: T,
@@ -39,6 +40,7 @@ pub fn admin_router() -> Router<AppState> {
         .route("/cms/pages", get(list_pages).post(create_page))
         .route("/cms/pages/{id}", patch(update_page))
         .route("/cms/pages/{id}/publish", post(publish_page))
+        .route("/cms/pages/{id}/unpublish", post(unpublish_page))
 }
 
 async fn get_public_page(
@@ -120,6 +122,18 @@ async fn publish_page(
     Path(id): Path<Uuid>,
 ) -> Result<Json<ApiEnvelope<CmsPageRecord>>, AppError> {
     let page = cms::publish_page(&state.db, id, user.id)
+        .await?
+        .ok_or_else(|| AppError::NotFound("page not found".to_string()))?;
+
+    Ok(Json(ApiEnvelope { data: page }))
+}
+
+async fn unpublish_page(
+    State(state): State<AppState>,
+    Extension(user): Extension<CurrentUser>,
+    Path(id): Path<Uuid>,
+) -> Result<Json<ApiEnvelope<CmsPageRecord>>, AppError> {
+    let page = cms::unpublish_page(&state.db, id, user.id)
         .await?
         .ok_or_else(|| AppError::NotFound("page not found".to_string()))?;
 
