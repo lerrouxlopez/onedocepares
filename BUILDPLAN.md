@@ -4,6 +4,10 @@
 **Status:** Ready for Implementation  
 **Prepared by:** Blueprint Document
 
+IMPORTANT Note: 
+## Session Start
+
+**Always read `BUILDPLAN.md` at the start of every session before writing any code.** Check 5. [Task List](#task-list) for the first unchecked task, then read that phase's detail section. Never start a new phase until all tasks in the current phase are checked off and exit criteria are confirmed with the user.
 ---
 
 ## Table of Contents
