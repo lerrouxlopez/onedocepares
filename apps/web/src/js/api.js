@@ -1,6 +1,8 @@
 import $ from 'jquery'
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api/v1'
+const CSRF_META_NAME = 'csrf-token'
+let csrfTokenCache = null
 
 function getCsrfToken() {
   return document.querySelector('meta[name="csrf-token"]')?.content || ''
