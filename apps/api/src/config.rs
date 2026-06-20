@@ -11,6 +11,13 @@ pub struct Config {
     pub secure_cookies: bool,
     pub session_ttl_hours: i64,
     pub uploads_dir: String,
+    pub smtp_host: Option<String>,
+    pub smtp_port: u16,
+    pub smtp_username: Option<String>,
+    pub smtp_password: Option<String>,
+    pub smtp_from: String,
+    pub superadmin_email: Option<String>,
+    pub superadmin_password: Option<String>,
 }
 
 impl Config {
@@ -35,6 +42,17 @@ impl Config {
                 .and_then(|value| value.parse::<i64>().ok())
                 .unwrap_or(24),
             uploads_dir: env::var("UPLOADS_DIR").unwrap_or_else(|_| "./uploads".to_string()),
+            smtp_host: env::var("SMTP_HOST").ok(),
+            smtp_port: env::var("SMTP_PORT")
+                .ok()
+                .and_then(|v| v.parse::<u16>().ok())
+                .unwrap_or(587),
+            smtp_username: env::var("SMTP_USERNAME").ok(),
+            smtp_password: env::var("SMTP_PASSWORD").ok(),
+            smtp_from: env::var("SMTP_FROM")
+                .unwrap_or_else(|_| "no-reply@onedocepares.com".to_string()),
+            superadmin_email: env::var("SUPERADMIN_USER").ok(),
+            superadmin_password: env::var("SUPERADMIN_PASSWORD").ok(),
         })
     }
 }

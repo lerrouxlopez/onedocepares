@@ -5,10 +5,11 @@ use argon2::{
 use chrono::{Duration, Utc};
 use rand::{Rng, distr::Alphanumeric, rng};
 use sha2::{Digest, Sha256};
+use sqlx::PgPool;
+use tracing::info;
 
-use crate::state::AppState;
+use crate::{config::Config, error::AppError, repositories::auth as auth_repo, state::AppState};
 
-#[allow(dead_code)]
 pub fn hash_password(password: &str) -> Result<String, argon2::password_hash::Error> {
     let salt = SaltString::generate(&mut OsRng);
     Argon2::default()
@@ -46,6 +47,28 @@ pub fn generate_csrf_token() -> String {
 
 pub fn session_expiry(state: &AppState) -> chrono::DateTime<Utc> {
     Utc::now() + Duration::hours(state.config.session_ttl_hours)
+}
+
+pub async fn ensure_superadmin(pool: &PgPool, config: &Config) -> Result<(), AppError> {
+    let (Some(email), Some(password)) = (&config.superadmin_email, &config.superadmin_password)
+    else {
+        return Ok(());
+    };
+
+    if auth_repo::find_user_by_email(pool, email).await?.is_some() {
+        return Ok(());
+    }
+
+    let password_hash = hash_password(password).map_err(|error| {
+        AppError::Config(format!("failed to hash superadmin password: {error}"))
+    })?;
+
+    let user_id = auth_repo::insert_user(pool, email, "Super Admin", &password_hash).await?;
+    auth_repo::assign_role_by_code(pool, user_id, "admin").await?;
+
+    info!(%email, "created default superadmin user");
+
+    Ok(())
 }
 
 #[cfg(test)]
