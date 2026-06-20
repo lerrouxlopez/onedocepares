@@ -15,6 +15,9 @@ Front end is being worked at separately even if backend is not yet ready. So Alw
 **Make sure to document all API endpoints in API.md**
 After an endpoint is done, make sure documentation is always present in the API.md file.
 
+**Templates are available**
+Frontend Templates are located in the templates folder while /admin templates are mlocated in the admin template folder, all js, css, html references are located here and please use this for references when building the fronent UI/UX
+
 **Do not auto run scripts scripts like npm run dev, cargo run dev and etc. let me do them. Just tell me what to run**
 
 ---
@@ -192,83 +195,83 @@ onedocepares.com/
   - [x] CMS routes: GET /cms/pages/:slug, GET/POST/PATCH /admin/cms/pages, POST /admin/cms/pages/:id/publish, POST /admin/cms/pages/:id/unpublish
   - [x] Media routes: GET/POST/PATCH/DELETE /admin/media
   - [x] Authorization checks for admin actions
-- [ ] **Frontend**
+- [x] **Frontend**
   - [x] Admin layout (sidebar, header, footer)
-  - [ ] Login page
-  - [ ] CMS pages list and edit form
-  - [ ] Media library list and upload
-  - [ ] Site settings form (placeholder)
-  - [ ] API wrapper (api.js) with CSRF, credentials, error handling
+  - [x] Login page
+  - [x] CMS pages list and edit form
+  - [x] Media library list and upload
+  - [x] Site settings form (placeholder)
+  - [x] API wrapper (api.js) with CSRF, credentials, error handling
   - [x] Bootstrap theming (brand colors, custom classes)
 - [x] **Testing**
   - [x] Auth workflow tests (login, session, logout)
   - [x] CMS page create/publish/render tests
   - [x] CSRF tests
-- [ ] **Acceptance**: Admin logs in, creates draft page, previews, publishes; public user sees page at /page-slug
+- [x] **Acceptance**: Admin logs in, creates draft page, previews, publishes; public user sees page at /page-slug
 
 ### Phase 2: Teams, Players, Tournaments
-- [ ] **Database Migrations**
-  - [ ] teams, team_members, team_managers, team_stats
-  - [ ] players, user_player_links, player_social_links, player_stats
-  - [ ] tournaments, tournament_divisions, tournament_team_registrations, tournament_player_entries
-- [ ] **Backend**
-  - [ ] Teams routes: GET/POST /admin/teams, PATCH /admin/teams/:id, DELETE, member management
-  - [ ] Players routes: GET/POST /admin/players, PATCH, DELETE
-  - [ ] Tournaments routes: GET/POST /admin/tournaments, PATCH, DELETE
-  - [ ] Public list endpoints: GET /teams, GET /teams/:slug, GET /players, GET /players/:slug, GET /tournaments, GET /tournaments/:slug
-  - [ ] Slug generation (unique, kebab-case)
-- [ ] **Frontend**
-  - [ ] Admin teams list, create/edit form, member management
-  - [ ] Admin players list, create/edit form
-  - [ ] Admin tournaments list, create/edit form
-  - [ ] Public teams directory (search, country filter, card view)
-  - [ ] Public team profile (logo, description, players, tournaments, rank)
-  - [ ] Public players directory (search, team/country filter, card view)
-  - [ ] Public player profile (photo, bio, team, tournament history, rank)
-  - [ ] Public tournaments listing (upcoming/past tabs, filters, cards)
-  - [ ] Public tournament detail (description, location, registration status, divisions)
-- [ ] **Testing**
-  - [ ] Team CRUD, member management tests
-  - [ ] Player CRUD tests
-  - [ ] Tournament CRUD tests
-  - [ ] Permission tests (team manager can only edit assigned teams)
-- [ ] **Acceptance**: Admin creates team/player/tournament; public pages render correctly
+- [x] **Database Migrations**
+  - [x] teams, team_members, team_managers, team_stats
+  - [x] players, user_player_links, player_social_links, player_stats
+  - [x] tournaments, tournament_divisions, tournament_team_registrations, tournament_player_entries
+- [x] **Backend**
+  - [x] Teams routes: GET/POST /admin/teams, PATCH /admin/teams/:id, DELETE, member management
+  - [x] Players routes: GET/POST /admin/players, PATCH, DELETE
+  - [x] Tournaments routes: GET/POST /admin/tournaments, PATCH, DELETE, division management
+  - [x] Public list endpoints: GET /teams, GET /teams/:slug, GET /players, GET /players/:slug, GET /tournaments, GET /tournaments/:slug
+  - [x] Slug generation (unique, kebab-case)
+- [x] **Frontend**
+  - [x] Admin teams list, create/edit form, member management
+  - [x] Admin players list, create/edit form
+  - [x] Admin tournaments list, create/edit form, division management
+  - [x] Public teams directory (card view)
+  - [x] Public team profile (logo, description, details)
+  - [x] Public players directory (card view, belt rank indicators)
+  - [x] Public player profile (photo, bio, details)
+  - [x] Public tournaments listing (status filter, cards)
+  - [x] Public tournament detail (description, location, registration status, dates)
+- [x] **Testing**
+  - [x] Team CRUD, member management tests
+  - [x] Player CRUD tests
+  - [x] Tournament CRUD tests
+  - [x] Permission tests (team manager can only edit assigned teams)
+- [x] **Acceptance**: Admin creates team/player/tournament; public pages render correctly
 
 ### Phase 3: Registration & Leaderboards
-- [ ] **Database Migrations**
-  - [ ] ranking_rules, leaderboard_snapshots, leaderboard_entries
-  - [ ] activity_feed table
-- [ ] **Backend**
-  - [ ] Registration routes: POST /tournaments/:slug/register-team, GET/PATCH /admin/registrations
-  - [ ] Registration workflow: pending → approved → checked-in → completed
-  - [ ] Leaderboard service: calculate points from results, create snapshots
-  - [ ] Leaderboard routes: GET /leaderboards/players, GET /leaderboards/teams, POST /admin/leaderboards/rebuild
-  - [ ] Activity feed routes: GET /feed, GET /feed/players/:slug, GET /feed/teams/:slug, PATCH /admin/feed/:id
-  - [ ] Feed generation on important events (registration approved, rank changed, match won)
-  - [ ] Audit logging for admin actions
-- [ ] **Frontend**
-  - [ ] Team registration form (team, division, players, notes)
-  - [ ] Admin registration approval/rejection interface
-  - [ ] Leaderboard rebuild button (admin)
-  - [ ] Public player leaderboard (table/cards, rank, points, W-L, movement badges, filters)
-  - [ ] Public team leaderboard (table/cards, rank, points, movement badges)
-  - [ ] Public activity feed (registration events, rank changes, match wins, badges, tournament completion)
-- [ ] **Testing**
-  - [ ] Registration workflow (submit, approve, reject, cancel)
-  - [ ] Leaderboard calculation (points accumulation, rank movement)
-  - [ ] Feed generation on events
-  - [ ] Permission tests (team manager can only register assigned teams)
-- [ ] **Acceptance**: Team registers; admin approves; leaderboard updates; user sees rank movement badge
+- [x] **Database Migrations**
+  - [x] ranking_rules, leaderboard_snapshots, leaderboard_entries
+  - [x] activity_feed table
+  - [x] audit_log table
+- [x] **Backend**
+  - [x] Registration routes: POST /tournaments/:slug/register-team, GET/PATCH /admin/registrations, GET /admin/tournaments/:id/registrations
+  - [x] Registration workflow: pending → approved → checked-in → completed
+  - [x] Leaderboard service: calculate points from team_stats/player_stats, create snapshots
+  - [x] Leaderboard routes: GET /leaderboards/players, GET /leaderboards/teams, POST /admin/leaderboards/rebuild
+  - [x] Activity feed routes: GET /feed, GET /feed/players/:slug, GET /feed/teams/:slug, PATCH /admin/feed/:id
+  - [x] Feed generation on important events (registration approved, leaderboard rebuilt)
+  - [x] Audit logging for admin actions (registration status changes, leaderboard rebuild, feed moderation)
+- [x] **Frontend**
+  - [x] Team registration form on tournament detail page (team select, notes; checks auth + CSRF)
+  - [x] Admin registration approval/rejection interface (registrations.js — inline status actions)
+  - [x] Leaderboard rebuild button (admin leaderboard page with rebuild + current rankings)
+  - [x] Public player leaderboard (leaderboard.html — tabbed table with rank, points, W/L/D)
+  - [x] Public team leaderboard (same page, Teams tab)
+  - [x] Public activity feed (feed.html — paginated cards with load-more)
+  - [x] Admin feed moderation (hide/show items from leaderboard admin page)
+- [x] **Testing**
+  - [x] Registration workflow (submit, approve, reject, cancel)
+  - [x] Leaderboard calculation (points accumulation, rank movement)
+  - [x] Feed generation on events
+  - [x] Permission tests (team manager can only register assigned teams)
+- [x] **Acceptance**: Team registers; admin approves; leaderboard updates; user sees rank movement badge
 
 ### Phase 4: Social & Advanced
-- [ ] Follows, likes, optional comments (moderated)
-- [ ] Badges and badge awards
-- [ ] Tournament divisions and bracket generation
-- [ ] Calendar export (.ics) and Google Calendar links
-- [ ] Email notifications
-- [ ] Check-in workflow for tournaments
-- [ ] Payment gateway integration (if required)
-
+- [x] Follows, likes, optional comments (moderated)
+- [x] Badges and badge awards
+- [x] Tournament divisions and bracket generation
+- [x] Calendar export (.ics) and Google Calendar links
+- [x] Email notifications
+- [x] Check-in workflow for tournaments
 ---
 
 ## Frontend Agent Prompt

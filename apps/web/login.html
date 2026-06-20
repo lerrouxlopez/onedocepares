@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="" />
+    <title>Admin Login — One Doce Pares</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  </head>
+  <body class="bg-dark d-flex align-items-center" style="min-height: 100vh">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-sm-10 col-md-7 col-lg-5 col-xl-4">
+          <div class="text-center mb-4">
+            <h1 class="h3 fw-bolder text-white">One Doce Pares</h1>
+            <p class="text-white-50 mb-0">Admin panel</p>
+          </div>
+
+          <div class="card shadow-lg">
+            <div class="card-body p-4 p-sm-5">
+              <h2 class="h5 fw-bolder mb-4">Sign in to your account</h2>
+
+              <div id="login-alert" class="alert alert-danger d-none" role="alert" aria-live="assertive"></div>
+
+              <form id="login-form" novalidate>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    required
+                  />
+                  <div class="invalid-feedback">Please enter your email address.</div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required
+                  />
+                  <div class="invalid-feedback">Please enter your password.</div>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
+                    Sign in
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <p class="text-center mt-4">
+            <a href="/" class="text-white-50 small">← Back to public site</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="One Doce Pares rankings — team and player leaderboards updated after every tournament." />
+    <title>Leaderboard | One Doce Pares</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container px-5">
+        <a class="navbar-brand fw-bolder" href="/">One Doce Pares</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNav" aria-controls="mainNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/teams.html">Teams</a></li>
+            <li class="nav-item"><a class="nav-link" href="/players.html">Players</a></li>
+            <li class="nav-item"><a class="nav-link" href="/tournaments.html">Tournaments</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/leaderboard.html">Leaderboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/feed.html">Feed</a></li>
+          </ul>
+          <a class="btn btn-outline-light ms-lg-3 mt-2 mt-lg-0" href="/login.html">Admin Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-dark py-4">
+      <div class="container px-5">
+        <h1 class="display-6 fw-bolder text-white mb-1">Leaderboard</h1>
+        <p class="text-white-50 mb-0">Rankings calculated from tournament results.</p>
+      </div>
+    </header>
+
+    <section class="py-5">
+      <div class="container px-5">
+        <ul class="nav nav-tabs mb-4" id="lbTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab-teams" data-bs-toggle="tab"
+                    data-bs-target="#panel-teams" type="button" role="tab" aria-controls="panel-teams" aria-selected="true">
+              <i class="bi bi-people me-1"></i> Teams
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-players" data-bs-toggle="tab"
+                    data-bs-target="#panel-players" type="button" role="tab" aria-controls="panel-players" aria-selected="false">
+              <i class="bi bi-person-badge me-1"></i> Players
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="panel-teams" role="tabpanel" aria-labelledby="tab-teams">
+            <div id="teams-leaderboard">
+              <div class="text-center py-5 text-muted">
+                <div class="spinner-border text-primary mb-3" role="status" aria-label="Loading"></div>
+                <p class="mb-0">Loading team rankings…</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="panel-players" role="tabpanel" aria-labelledby="tab-players">
+            <div id="players-leaderboard">
+              <div class="text-center py-5 text-muted">
+                <div class="spinner-border text-primary mb-3" role="status" aria-label="Loading"></div>
+                <p class="mb-0">Loading player rankings…</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-5 bg-dark">
+      <div class="container px-5">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; One Doce Pares <span id="footer-year"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/leaderboard.js"></script>
+  </body>
+</html>

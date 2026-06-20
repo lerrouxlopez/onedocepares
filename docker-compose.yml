@@ -13,7 +13,7 @@ services:
   api:
     image: rust:1.94
     working_dir: /workspace/apps/api
-    command: sh -c "cargo run"
+    command: sh -c "cargo run --bin api"
     environment:
       API_PORT: 8000
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/onedocepares

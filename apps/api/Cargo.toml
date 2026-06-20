@@ -17,6 +17,7 @@ path = "src/bin/create_admin.rs"
 
 [dependencies]
 axum = { version = "0.8.6", features = ["multipart"] }
+lettre = { version = "0.11", default-features = false, features = ["tokio1-rustls-tls", "smtp-transport", "hostname", "builder"] }
 axum-extra = { version = "0.10.3", features = ["cookie"] }
 argon2 = "0.5.3"
 chrono = { version = "0.4.42", features = ["serde"] }

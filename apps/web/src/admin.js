@@ -1,6 +1,7 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import $ from 'jquery'
-import './css/main.scss'
+import './css/admin.scss'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import { mountAdminApp } from './js/admin-router'
 
 window.$ = $

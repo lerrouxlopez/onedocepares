@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="" />
+    <title>Tournament | One Doce Pares</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container px-5">
+        <a class="navbar-brand fw-bolder" href="/">One Doce Pares</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNav" aria-controls="mainNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/teams.html">Teams</a></li>
+            <li class="nav-item"><a class="nav-link" href="/players.html">Players</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/tournaments.html">Tournaments</a></li>
+            <li class="nav-item"><a class="nav-link" href="/leaderboard.html">Leaderboard</a></li>
+          </ul>
+          <a class="btn btn-outline-light ms-lg-3 mt-2 mt-lg-0" href="/login.html">Admin Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="tournament-content">
+      <div class="text-center py-5 text-muted">
+        <div class="spinner-border text-primary mb-3" role="status" aria-label="Loading"></div>
+        <p class="mb-0">Loading tournament…</p>
+      </div>
+    </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container px-5">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; One Doce Pares <span id="footer-year"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/tournament.js"></script>
+  </body>
+</html>
