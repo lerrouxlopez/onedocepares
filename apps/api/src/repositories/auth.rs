@@ -80,6 +80,47 @@ pub async fn find_user_by_id(
     .await
 }
 
+pub async fn insert_user(
+    pool: &PgPool,
+    email: &str,
+    display_name: &str,
+    password_hash: &str,
+) -> Result<Uuid, sqlx::Error> {
+    let id = Uuid::new_v4();
+    sqlx::query(
+        r#"
+        INSERT INTO users (id, email, display_name, password_hash)
+        VALUES ($1, $2, $3, $4)
+        "#,
+    )
+    .bind(id)
+    .bind(email)
+    .bind(display_name)
+    .bind(password_hash)
+    .execute(pool)
+    .await?;
+    Ok(id)
+}
+
+pub async fn assign_role_by_code(
+    pool: &PgPool,
+    user_id: Uuid,
+    role_code: &str,
+) -> Result<(), sqlx::Error> {
+    sqlx::query(
+        r#"
+        INSERT INTO user_roles (user_id, role_id)
+        SELECT $1, id FROM roles WHERE code = $2
+        ON CONFLICT DO NOTHING
+        "#,
+    )
+    .bind(user_id)
+    .bind(role_code)
+    .execute(pool)
+    .await
+    .map(|_| ())
+}
+
 pub async fn insert_session(pool: &PgPool, session: &NewSession<'_>) -> Result<(), sqlx::Error> {
     sqlx::query(
         r#"

@@ -1,3 +1,13 @@
+pub mod activity_feed;
+pub mod audit_log;
 pub mod auth;
+pub mod badges;
 pub mod cms;
+pub mod leaderboards;
+pub mod matches;
 pub mod media;
+pub mod players;
+pub mod registrations;
+pub mod social;
+pub mod teams;
+pub mod tournaments;
