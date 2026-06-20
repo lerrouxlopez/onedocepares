@@ -1,5 +1,4 @@
-use api::{app, config};
-use sqlx::postgres::PgPoolOptions;
+use api::{app, config, services::auth as auth_service};
 use tokio::net::TcpListener;
 use tower_http::trace::TraceLayer;
 use tracing::info;
@@ -17,13 +16,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
-    info!("running database migrations");
-    let migrate_pool = PgPoolOptions::new()
-        .max_connections(1)
+    let pool = sqlx::postgres::PgPoolOptions::new()
+        .max_connections(2)
         .connect(&config.database_url)
         .await?;
-    sqlx::migrate!("./migrations").run(&migrate_pool).await?;
-    migrate_pool.close().await;
+    sqlx::migrate!("./migrations").run(&pool).await?;
+    auth_service::ensure_superadmin(&pool, &config).await?;
+    drop(pool);
 
     let app = app::build_router(config.clone())?.layer(TraceLayer::new_for_http());
     let listener = TcpListener::bind(config.bind_addr).await?;

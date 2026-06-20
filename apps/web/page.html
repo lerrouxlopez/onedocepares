@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>One Doce Pares</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container px-5">
+        <a class="navbar-brand fw-bolder" href="/">One Doce Pares</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/teams.html">Teams</a></li>
+            <li class="nav-item"><a class="nav-link" href="/players.html">Players</a></li>
+            <li class="nav-item"><a class="nav-link" href="/tournaments.html">Tournaments</a></li>
+            <li class="nav-item"><a class="nav-link" href="/leaderboard.html">Leaderboard</a></li>
+          </ul>
+          <a class="btn btn-outline-light ms-lg-3 mt-2 mt-lg-0" href="/login.html">Admin Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Loading state -->
+    <div id="page-loading" class="container px-5 py-5 text-center text-muted">
+      <div class="spinner-border text-primary mb-3" role="status" aria-label="Loading page"></div>
+      <p class="mb-0">Loading&hellip;</p>
+    </div>
+
+    <!-- Page content (hidden until loaded) -->
+    <main id="page-content" class="d-none" aria-live="polite">
+      <header class="bg-dark py-5">
+        <div class="container px-5">
+          <h1 class="display-6 fw-bolder text-white mb-0" id="page-heading"></h1>
+        </div>
+      </header>
+      <div class="container px-5 py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8" id="page-body"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- 404 state -->
+    <div id="page-not-found" class="d-none container px-5 py-5 text-center">
+      <i class="bi bi-file-earmark-x display-1 text-muted d-block mb-3"></i>
+      <h1 class="h3 fw-bolder mb-2">Page not found</h1>
+      <p class="text-muted mb-4">The page you're looking for doesn't exist or has been removed.</p>
+      <a href="/" class="btn btn-primary">Back to home</a>
+    </div>
+
+    <!-- Error state -->
+    <div id="page-error" class="d-none container px-5 py-5 text-center">
+      <i class="bi bi-exclamation-triangle display-1 text-muted d-block mb-3"></i>
+      <h1 class="h3 fw-bolder mb-2">Something went wrong</h1>
+      <p class="text-muted mb-4">We couldn't load this page. Please try again.</p>
+      <button type="button" class="btn btn-outline-secondary" onclick="window.location.reload()">Retry</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark mt-auto">
+      <div class="container px-5">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; One Doce Pares <span id="footer-year"></span>
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/page.js"></script>
+  </body>
+</html>

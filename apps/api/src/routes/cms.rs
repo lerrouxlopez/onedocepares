@@ -14,7 +14,6 @@ use crate::{
     state::AppState,
 };
 
-
 #[derive(Serialize)]
 struct ApiEnvelope<T> {
     data: T,
